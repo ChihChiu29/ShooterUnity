@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
+using UnityEditor;
 
 namespace sprite
 {
@@ -12,7 +13,8 @@ namespace sprite
 
     public static Sprite GetPlayerSprite ()
     {
-      return Resources.Load<Sprite> (GetSpritePathByName ("airship2"));
+      return AssetDatabase.LoadAssetAtPath<Sprite> (
+        GetSpritePathByName ("airship2.png"));
     }
 
     private static string GetSpritePathByName (string name)

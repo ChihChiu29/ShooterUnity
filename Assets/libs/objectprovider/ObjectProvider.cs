@@ -10,12 +10,13 @@ namespace objectprovider
   {
     private static string PREFAB_FOLDER = "Assets/prefabs/";
 
-    public static GameObject CreateRigidObject (Sprite sprite)
+    public static GameObject CreateRigidObject (string name, Sprite sprite)
     {
       GameObject obj = 
         MonoBehaviour.Instantiate (
           AssetDatabase.LoadAssetAtPath<GameObject> (
             GetPrefabPathByName ("BasicRigidBody.prefab")));
+      obj.name = name;
       SpriteRenderer renderer = obj.GetComponent<SpriteRenderer> ();
       renderer.sprite = sprite;
 
