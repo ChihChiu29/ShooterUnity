@@ -48,6 +48,12 @@ namespace gameobject
       return obj;
     }
 
+    public static GameObject CreateExplosion ()
+    {
+      // TODO.
+      return null;
+    }
+
     private static string GetFullPath (string name)
     {
       return Path.Combine (PREFAB_FOLDER, name);
