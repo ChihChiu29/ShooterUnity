@@ -6,6 +6,7 @@ using sprite;
 
 public class Playground : MonoBehaviour
 {
+  public float bulletVelocity = 10.0f;
 
   // Use this for initialization
   void Start ()
@@ -24,21 +25,21 @@ public class Playground : MonoBehaviour
         "bullet", 
         SpriteProvider.GetBullet (),
         location: new Vector2 (0.5f, -2),
-        velocity: new Vector2 (0, 5));
+        velocity: new Vector2 (0, bulletVelocity));
 
     GameObject bullet2 = 
       ObjectProvider.CreateRigidObject (
         "bullet", 
         SpriteProvider.GetBullet (),
-        location: new Vector2 (0.5f, -3),
-        velocity: new Vector2 (0, 5));
+        location: new Vector2 (0.6f, -3),
+        velocity: new Vector2 (0, bulletVelocity));
 
     GameObject bullet3 = 
       ObjectProvider.CreateRigidObject (
         "bullet", 
         SpriteProvider.GetBullet (),
-        location: new Vector2 (0.5f, -4),
-        velocity: new Vector2 (0, 5));
+        location: new Vector2 (0.8f, -4),
+        velocity: new Vector2 (0, bulletVelocity));
   }
 	
   // Update is called once per frame
