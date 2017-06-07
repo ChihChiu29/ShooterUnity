@@ -23,7 +23,9 @@ namespace gameobject
       // The location of the object.
       Vector2 location = default(Vector2),
       // The transform on the object.
-      Quaternion transform = default(Quaternion))
+      Quaternion transform = default(Quaternion),
+      // The initial velocity of the object.
+      Vector2 velocity = default(Vector2))
     {
       GameObject obj = 
         MonoBehaviour.Instantiate (
@@ -34,6 +36,9 @@ namespace gameobject
 
       SpriteRenderer renderer = obj.GetComponent<SpriteRenderer> ();
       renderer.sprite = sprite;
+
+      Rigidbody2D rigidBody = obj.GetComponent<Rigidbody2D> ();
+      rigidBody.velocity = velocity;
 
       float radius = 
         (sprite.bounds.extents.x + sprite.bounds.extents.y) * radiusFactor;

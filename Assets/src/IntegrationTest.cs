@@ -29,7 +29,7 @@ public class IntegrationTest : MonoBehaviour
 
     GameObject test2 = 
       ObjectProvider.CreateRigidObject (
-        "test2", SpriteProvider.GetPlayerSprite (), 
+        "test2", SpriteProvider.GetPlayer (), 
         location: new Vector2 (0, 1));
     Assert.AreEqual ("test2", test2.name);
     Assert.NotNull (test1.GetComponent<SpriteRenderer> ().sprite);
@@ -39,7 +39,7 @@ public class IntegrationTest : MonoBehaviour
   {
     GameObject player = 
       ObjectProvider.CreateRigidObject (
-        "palyer", SpriteProvider.GetPlayerSprite ());
+        "palyer", SpriteProvider.GetPlayer ());
     RigidbodyKeyboardController controller = 
       ScriptProvider.AddScript<RigidbodyKeyboardController> (player);
     controller.velocityScale = 1.0f;
