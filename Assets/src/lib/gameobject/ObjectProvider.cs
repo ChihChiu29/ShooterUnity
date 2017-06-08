@@ -45,8 +45,7 @@ namespace gameobject
       Rigidbody2D rigidBody = obj.GetComponent<Rigidbody2D> ();
       rigidBody.velocity = velocity;
 
-      float radius = 
-        (sprite.bounds.extents.x + sprite.bounds.extents.y) * radiusFactor;
+      float radius = ObjectQuery.GetSpriteScale (obj) * radiusFactor;
       CircleCollider2D collider = obj.GetComponent<CircleCollider2D> ();
       collider.radius = radius;  
 
@@ -86,8 +85,7 @@ namespace gameobject
 
       obj.transform.Rotate (Vector3.forward * rotation);
 
-      float radius = 
-        (sprite.bounds.extents.x + sprite.bounds.extents.y) * radiusFactor;
+      float radius = ObjectQuery.GetSpriteScale (obj) * radiusFactor;
       CircleCollider2D collider = obj.GetComponent<CircleCollider2D> ();
       collider.radius = radius;
       collider.isTrigger = true;

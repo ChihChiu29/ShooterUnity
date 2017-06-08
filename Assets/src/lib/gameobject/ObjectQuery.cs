@@ -13,6 +13,12 @@ namespace gameobject
       return new Vector2 (obj.transform.position.x, obj.transform.position.y);
     }
 
+    public static float GetSpriteScale (GameObject obj)
+    {
+      Sprite sprite = obj.GetComponent<SpriteRenderer> ().sprite;
+      return (sprite.bounds.extents.x + sprite.bounds.extents.y) / 2;
+    }
+
     public static float GetRadius (GameObject obj)
     {
       return obj.GetComponent<CircleCollider2D> ().radius;
