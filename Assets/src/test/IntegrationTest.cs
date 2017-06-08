@@ -42,6 +42,6 @@ public class IntegrationTest : MonoBehaviour
         "palyer", SpriteProvider.GetPlayer ());
     RigidbodyKeyboardController controller = 
       ScriptProvider.AddScript<RigidbodyKeyboardController> (player);
-    controller.velocityScale = 1.0f;
+    controller.speed = 1.0f;
   }
 }

@@ -40,7 +40,7 @@ namespace sprite
     /**
      * Returns the Sprite with the given relative path.
      */
-    private static Sprite GetSpriteByRelativePath (
+    public static Sprite GetSpriteByRelativePath (
       /* The path under SPRITE_FOLDER, no extension. */
       string relativePath)
     {
@@ -55,7 +55,7 @@ namespace sprite
     /*
      * Returns the list of Sprites with the given relative path.
      */
-    private static Sprite[] GetSpriteSheetByRelativePath (
+    public static Sprite[] GetSpriteSheetByRelativePath (
       /* The path under SPRITE_FOLDER, no extension. */
       string relativePath)
     {

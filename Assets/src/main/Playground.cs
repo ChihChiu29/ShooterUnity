@@ -11,35 +11,16 @@ public class Playground : MonoBehaviour
   // Use this for initialization
   void Start ()
   {
-    GameObject enemy = 
-      ObjectProvider.CreateRigidObject (
-        "enemy", SpriteProvider.GetAirship (),
-        radiusFactor: 0.3f,
-        location: new Vector2 (0, 4));
-    RigidbodyKeyboardController controller = 
-      enemy.AddComponent<RigidbodyKeyboardController> ();
-    controller.velocityScale = 1.0f;
 
-    GameObject bullet1 = 
-      ObjectProvider.CreateRigidObject (
-        "bullet", 
-        SpriteProvider.GetBullet (),
-        location: new Vector2 (0.5f, -2),
-        velocity: new Vector2 (0, bulletVelocity));
+    GameObject player = ObjectFactory.CreatePlayer ();
 
-    GameObject bullet2 = 
-      ObjectProvider.CreateRigidObject (
-        "bullet", 
-        SpriteProvider.GetBullet (),
-        location: new Vector2 (0.6f, -3),
-        velocity: new Vector2 (0, bulletVelocity));
+    GameObject enemy = ObjectFactory.CreateEnemy ();
+    enemy.transform.position = new Vector2 (0, 4);
 
-    GameObject bullet3 = 
-      ObjectProvider.CreateRigidObject (
-        "bullet", 
-        SpriteProvider.GetBullet (),
-        location: new Vector2 (0.8f, -4),
-        velocity: new Vector2 (0, bulletVelocity));
+    ObjectFactory.CreateBullet (new Vector2 (0, 0), facing: 45);
+    ObjectFactory.CreateBullet (new Vector2 (0.5f, -2), facing: 90);
+    ObjectFactory.CreateBullet (new Vector2 (0.6f, -3), facing: 90);
+    ObjectFactory.CreateBullet (new Vector2 (0.8f, -4), facing: 90);
   }
 	
   // Update is called once per frame

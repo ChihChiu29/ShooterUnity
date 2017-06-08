@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 public class RigidbodyKeyboardController : MonoBehaviour
 {
-  public float velocityScale = 10.0f;
+  // How fast does the object move when the key is down.
+  public float speed = 40.0f;
 
   private Rigidbody2D rigidBody;
 
@@ -17,24 +19,24 @@ public class RigidbodyKeyboardController : MonoBehaviour
   // Update is called once per frame
   void Update ()
   {
-    if (Input.GetKeyDown ("w")) {
-      rigidBody.velocity = Vector2.up * velocityScale;
-      rigidBody.AddForce (Vector2.up * velocityScale);      
+    Vector2 velocity = Vector2.zero;
+
+    if (Input.GetKey ("w")) {
+      velocity += Vector2.up;
     }
 
-    if (Input.GetKeyDown ("s")) {
-      rigidBody.velocity = Vector2.down * velocityScale;
-      rigidBody.AddForce (Vector2.down * velocityScale);      
+    if (Input.GetKey ("s")) {
+      velocity += Vector2.down;
     }
 
-    if (Input.GetKeyDown ("a")) {
-      rigidBody.velocity = Vector2.left * velocityScale;
-      rigidBody.AddForce (Vector2.left * velocityScale);      
+    if (Input.GetKey ("a")) {
+      velocity += Vector2.left;
     }
 
-    if (Input.GetKeyDown ("d")) {
-      rigidBody.velocity = Vector2.right * velocityScale;
-      rigidBody.AddForce (Vector2.right * velocityScale);      
+    if (Input.GetKey ("d")) {
+      velocity += Vector2.right;
     }
+
+    rigidBody.velocity = velocity * speed;
   }
 }
