@@ -16,7 +16,7 @@ namespace gameobject
     public static float GetSpriteScale (GameObject obj)
     {
       Sprite sprite = obj.GetComponent<SpriteRenderer> ().sprite;
-      return (sprite.bounds.extents.x + sprite.bounds.extents.y) / 2;
+      return sprite.bounds.extents.x + sprite.bounds.extents.y;
     }
 
     public static float GetRadius (GameObject obj)

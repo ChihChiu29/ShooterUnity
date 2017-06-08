@@ -67,16 +67,21 @@ namespace gameobject
       float facing = 0.0f,
       float speed = 5.0f)
     {
-      GameObject bullet =
+      GameObject obj =
         ObjectProvider.CreateRigidObject (
           "bullet", 
           GetBulletSprite (),
           rotation: 180 + facing,
+          radiusFactor: 0.05f,
           location: location,
           velocity: new Vector2 (
             speed * Mathf.Cos (Mathf.Deg2Rad * facing),
             speed * Mathf.Sin (Mathf.Deg2Rad * facing)));
-      return bullet;
+
+      // Handle collision.
+      obj.AddComponent<BulletOnCollision> ();
+
+      return obj;
     }
 
     private static Sprite GetBulletSprite ()

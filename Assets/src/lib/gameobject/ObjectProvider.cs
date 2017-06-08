@@ -12,20 +12,20 @@ namespace gameobject
     private static string PREFAB_FOLDER = "Prefabs/";
 
     public static GameObject CreateRigidObject (
-    // Name of the object.
+      // Name of the object.
       string name,
-    // Sprite for the object.
+      // Sprite for the object.
       Sprite sprite,
-    // The scale of the sprite.
+      // The scale of the sprite.
       float scale = 1.0f,
-    // How much should the sprite be rotated counter-clockwisely.
+      // How much should the sprite be rotated counter-clockwisely.
       float rotation = 0.0f,
-    // Radius of the object, used for collision detection.
-    // The actual radius is calcualed as (width + height) / 2 * radiusFactor.
+      // Radius of the object, used for collision detection.
+      // The actual radius is calcualed as (width + height) / 2 * radiusFactor.
       float radiusFactor = 0.5f,
-    // The location of the object.
+      // The location of the object.
       Vector2 location = default(Vector2),
-    // The initial velocity of the object.
+      // The initial velocity of the object.
       Vector2 velocity = default(Vector2))
     {
       GameObject obj = 
