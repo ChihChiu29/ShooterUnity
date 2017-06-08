@@ -37,7 +37,7 @@ namespace gameobject
       return obj;
     }
 
-    public static GameObject CreateEnemy ()
+    public static GameObject CreateEnemy (int weaponLevel)
     {
       GameObject obj = 
         ObjectProvider.CreateRigidObject (
@@ -55,7 +55,7 @@ namespace gameobject
       WeaponAutoController controller = 
         obj.AddComponent<WeaponAutoController> ();
       controller.weapon = 
-        WeaponProvider.CreateRandomWeapon (obj, -90, 0, 1);
+        WeaponProvider.CreateRandomWeapon (obj, -90, 25, weaponLevel);
 
       return obj;
     }
