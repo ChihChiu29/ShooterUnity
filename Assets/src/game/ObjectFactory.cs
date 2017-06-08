@@ -4,7 +4,6 @@ using UnityEngine;
 using System.Net.NetworkInformation;
 using sprite;
 using gameobject;
-using System;
 using weapon;
 
 namespace gameobject
@@ -63,7 +62,6 @@ namespace gameobject
 
     public static GameObject CreateBullet (
       Vector2 location,
-      string name = "bullet",
       // Which direction in degree (counter-clockwisely) is the bullet facing; 
       // 0 means right (x+ direction).
       float facing = 0.0f,
@@ -71,14 +69,40 @@ namespace gameobject
     {
       GameObject bullet =
         ObjectProvider.CreateRigidObject (
-          name, 
-          SpriteProvider.GetBullet (),
+          "bullet", 
+          GetBulletSprite (),
           rotation: 180 + facing,
           location: location,
           velocity: new Vector2 (
-            (float)(speed * Math.Cos (Mathf.Deg2Rad * facing)),
-            (float)(speed * Math.Sin (Mathf.Deg2Rad * facing))));
+            speed * Mathf.Cos (Mathf.Deg2Rad * facing),
+            speed * Mathf.Sin (Mathf.Deg2Rad * facing)));
       return bullet;
+    }
+
+    private static Sprite GetBulletSprite ()
+    {
+      Sprite[] sheet = SpriteProvider.GetSpriteSheetByRelativePath ("sprites");
+      return sheet [32];
+    }
+
+    public static GameObject CreateExplosion (
+      Vector2 location,
+      float initialScale = 1f,
+      // Final scale = initialScale * maxExpansionFactor.
+      float finalScale = 10f,
+      float expansionSpeed = 100f)
+    {
+      GameObject explosion =
+        ObjectProvider.CreateExplosion (
+          "explosion",
+          SpriteProvider.GetSpriteByRelativePath ("explosion"),
+          initialScale: initialScale,
+          finalScale: finalScale,
+          expansionSpeed: expansionSpeed,
+          rotation: Random.Range (0, 360),
+          radiusFactor: 0.5f,
+          location: location);
+      return explosion;
     }
   }
 }

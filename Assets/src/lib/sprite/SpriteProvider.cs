@@ -20,23 +20,6 @@ namespace sprite
     private static Dictionary<string, Sprite[]> spritesheetCache = 
       new Dictionary<string, Sprite[]> ();
 
-    public static Sprite GetPlayer ()
-    {
-      Sprite[] sheet = GetSpriteSheetByRelativePath ("sprites");
-      return sheet [3];
-    }
-
-    public static Sprite GetAirship ()
-    {
-      return GetSpriteByRelativePath ("airship2");
-    }
-
-    public static Sprite GetBullet ()
-    {
-      Sprite[] sheet = GetSpriteSheetByRelativePath ("sprites");
-      return sheet [32];
-    }
-
     /**
      * Returns the Sprite with the given relative path.
      */
