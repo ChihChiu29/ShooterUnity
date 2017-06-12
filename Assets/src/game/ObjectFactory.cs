@@ -19,6 +19,8 @@ namespace gameobject
           scale: 0.25f,
           radiusFactor: 0.3f);
 
+      obj.tag = Tag.Player;
+
       // Fix rotation.
       Rigidbody2D rigidBody = obj.GetComponent<Rigidbody2D> ();
       rigidBody.constraints = RigidbodyConstraints2D.FreezeRotation;
@@ -46,6 +48,8 @@ namespace gameobject
           scale: 0.5f,
           rotation: 180f,
           radiusFactor: 0.4f);
+
+      obj.tag = Tag.Enemy;
 
       // Fix rotation.
       Rigidbody2D rigidBody = obj.GetComponent<Rigidbody2D> ();

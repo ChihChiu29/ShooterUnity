@@ -6,12 +6,12 @@ using gameobject;
 namespace weapon
 {
   // Fires bullets radically.
-  public class RadicalBulletWeapon : Weapon
+  public class RadialBulletWeapon : Weapon
   {
     private GameObject host;
     private Dictionary<int, float> pattern;
 
-    public RadicalBulletWeapon (
+    public RadialBulletWeapon (
       // Host of the weapon.
       GameObject host,
       // A dictionary of {angle: bullet speed}.

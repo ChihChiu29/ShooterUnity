@@ -23,7 +23,7 @@ namespace weapon
             fireDirection - halfSpread, fireDirection + halfSpread);
         pattern [direction] = Random.Range (5, 30);
       }
-      return new RadicalBulletWeapon (host, pattern);
+      return new RadialBulletWeapon (host, pattern);
     }
   }
 }
