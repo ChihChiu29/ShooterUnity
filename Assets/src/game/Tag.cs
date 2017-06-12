@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum Tag
+public class Tag
 {
-  Player,
-  Enemy,
+  public static string Player = "player";
+  public static string Enemy = "enemy";
 }
