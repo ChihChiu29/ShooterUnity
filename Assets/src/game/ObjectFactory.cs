@@ -10,16 +10,21 @@ namespace gameobject
 {
   public class ObjectFactory
   {
+    public static Sprite[] defenderSheet = 
+      SpriteProvider.GetSpriteSheetByRelativePath ("defender");
+    public static Sprite airshipSprite = 
+      SpriteProvider.GetSpriteByRelativePath ("airship");
+
     public static GameObject CreatePlayer ()
     {
       GameObject obj = 
         ObjectProvider.CreateRigidObject (
           "player",
-          SpriteProvider.GetSpriteByRelativePath ("airship"),
-          scale: 0.25f,
+          defenderSheet [28],
+          scale: 1.5f,
           radiusFactor: 0.3f);
 
-      obj.tag = Tag.Player;
+      PropertyManager.GetMetadata (obj).tag = Tag.Player;
 
       // Fix rotation.
       Rigidbody2D rigidBody = obj.GetComponent<Rigidbody2D> ();
@@ -39,17 +44,31 @@ namespace gameobject
       return obj;
     }
 
-    public static GameObject CreateEnemy (int weaponLevel)
+    public static GameObject CreateEnemy (
+      // Starts from 1, type of enemy.
+      int type,
+      // Starts from 1, the higher level the more powerful the weapon.
+      int weaponLevel)
     {
+      Sprite enemySprite;
+      if (type == 1) {
+        enemySprite = defenderSheet [0];
+      } else if (type == 2) {
+        enemySprite = defenderSheet [8];
+      } else if (type == 3) {
+        enemySprite = defenderSheet [15];
+      } else {
+        throw new UnityException ("Enemy type " + type + " not supported!");
+      }
       GameObject obj = 
         ObjectProvider.CreateRigidObject (
           "enemy",
-          SpriteProvider.GetSpriteByRelativePath ("airship2"),
-          scale: 0.5f,
-          rotation: 180f,
+          enemySprite,
+          scale: 1.5f,
+          rotation: 0f,
           radiusFactor: 0.4f);
 
-      obj.tag = Tag.Enemy;
+      PropertyManager.GetMetadata (obj).tag = Tag.Enemy;
 
       // Fix rotation.
       Rigidbody2D rigidBody = obj.GetComponent<Rigidbody2D> ();
@@ -66,6 +85,8 @@ namespace gameobject
 
     public static GameObject CreateBullet (
       Vector2 location,
+      // The tag of the bullet.
+      string tag,
       // Which direction in degree (counter-clockwisely) is the bullet facing; 
       // 0 means right (x+ direction).
       float facing = 0.0f,
@@ -74,24 +95,20 @@ namespace gameobject
       GameObject obj =
         ObjectProvider.CreateRigidObject (
           "bullet", 
-          GetBulletSprite (),
-          rotation: 180 + facing,
+          defenderSheet [21],
+          rotation: 90 + facing,
           radiusFactor: 0.05f,
           location: location,
           velocity: new Vector2 (
             speed * Mathf.Cos (Mathf.Deg2Rad * facing),
             speed * Mathf.Sin (Mathf.Deg2Rad * facing)));
 
+      PropertyManager.GetMetadata (obj).tag = tag;
+
       // Handle collision.
       obj.AddComponent<BulletOnCollision> ();
 
       return obj;
-    }
-
-    private static Sprite GetBulletSprite ()
-    {
-      Sprite[] sheet = SpriteProvider.GetSpriteSheetByRelativePath ("sprites");
-      return sheet [32];
     }
 
     public static GameObject CreateExplosion (

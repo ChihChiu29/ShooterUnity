@@ -6,8 +6,13 @@ using UnityEngine;
 
 namespace gameobject
 {
-  public class ObjectQuery
+  public class PropertyManager
   {
+    public static Metadata GetMetadata (GameObject obj)
+    {
+      return obj.GetComponent<Metadata> ();
+    }
+
     public static Vector2 GetPosition (GameObject obj)
     {
       return new Vector2 (obj.transform.position.x, obj.transform.position.y);

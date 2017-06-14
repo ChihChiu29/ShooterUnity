@@ -23,13 +23,14 @@ namespace weapon
 
     public void Fire ()
     {
-      Vector2 position = ObjectQuery.GetPosition (host);
-      float radius = ObjectQuery.GetRadius (host);
+      Vector2 position = PropertyManager.GetPosition (host);
+      float radius = PropertyManager.GetRadius (host);
       foreach (int angle in pattern.Keys) {
         float speed = pattern [angle];
         ObjectFactory.CreateBullet (
           new Vector2 (position.x + radius * Mathf.Cos (Mathf.Deg2Rad * angle), 
             position.y + radius * Mathf.Sin (Mathf.Deg2Rad * angle)),
+          PropertyManager.GetMetadata (host).tag,
           facing: angle, 
           speed: speed);
       }

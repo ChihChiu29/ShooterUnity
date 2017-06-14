@@ -13,7 +13,8 @@ public class Playground : MonoBehaviour
     player.transform.position = new Vector2 (0, -4);
 
     for (int x = -7; x <= 7; x += 2) {
-      GameObject enemy = ObjectFactory.CreateEnemy (Random.Range (1, 5));
+      GameObject enemy = 
+        ObjectFactory.CreateEnemy (Random.Range (1, 4), Random.Range (1, 5));
       enemy.transform.position = new Vector2 (x, 4);
     }
   }
