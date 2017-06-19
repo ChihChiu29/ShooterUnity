@@ -12,17 +12,30 @@ public class Health : MonoBehaviour
   void Update ()
   {
     if (health < 0) {
+      float radius = PropertyManager.GetRadius (gameObject);
+
+//      ObjectFactory.CreateExplosion (
+//        new Vector2 (transform.position.x, transform.position.y),
+//        initialScale: 0.1f * radius,
+//        finalScale: 1.2f * radius,
+//        expansionSpeed: 0.5f);
+
       ObjectFactory.CreateExplosion (
         new Vector2 (transform.position.x, transform.position.y),
         initialScale: 0.1f,
-        finalScale: 0.6f,
-        expansionSpeed: 1.5f);
+        finalScale: 0.4f,
+        expansionSpeed: 1.2f);
 
       Object.Destroy (gameObject);
     }
   }
 
-  public int TakeDamage (int damage)
+  public void SetHealth (int newHealth)
+  {
+    health = newHealth;
+  }
+
+  public int ApplyDamage (int damage)
   {
     return ChangeHealth (-damage);
   }

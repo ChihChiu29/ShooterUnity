@@ -7,7 +7,7 @@ using UnityEngine.Networking.NetworkSystem;
 public class WeaponAutoController : MonoBehaviour
 {
   public Weapon weapon = null;
-  public float timeIntervalBetweenFires = 0.3f;
+  public float timeIntervalBetweenFires = 0.5f;
 
   private float lastFireTime;
 

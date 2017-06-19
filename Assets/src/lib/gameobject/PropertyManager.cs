@@ -18,6 +18,16 @@ namespace gameobject
       return obj.GetComponent<Health> ();
     }
 
+    // Returning -1 if the object does not have health component.
+    public static int ApplyDamage (GameObject obj, int damage)
+    {
+      Health healthComponent = GetHealthComponent (obj);
+      if (healthComponent != null) {
+        return healthComponent.ApplyDamage (damage);
+      }
+      return -1;
+    }
+
     public static Vector2 GetPosition (GameObject obj)
     {
       return new Vector2 (obj.transform.position.x, obj.transform.position.y);

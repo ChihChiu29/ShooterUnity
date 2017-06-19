@@ -12,10 +12,12 @@ namespace gameobject
   {
     public static Sprite[] defenderSheet = 
       SpriteProvider.GetSpriteSheetByRelativePath ("defender");
+    public static Sprite[] spritesSheet = 
+      SpriteProvider.GetSpriteSheetByRelativePath ("sprites");
     public static Sprite airshipSprite = 
       SpriteProvider.GetSpriteByRelativePath ("airship");
 
-    public static GameObject CreatePlayer ()
+    public static GameObject CreatePlayer (int level)
     {
       GameObject obj = 
         ObjectProvider.CreateRigidObject (
@@ -23,7 +25,7 @@ namespace gameobject
           defenderSheet [28],
           scale: 1.5f,
           radiusFactor: 0.3f,
-          health: 10);
+          health: level * 2);
       PropertyManager.GetTagComponent (obj).easyTag = Tag.Player;
 
       // Fix rotation.
@@ -39,7 +41,9 @@ namespace gameobject
       WeaponKeyboardController weaponController = 
         obj.AddComponent<WeaponKeyboardController> ();
       weaponController.weapon = 
-        WeaponProvider.CreateRandomWeapon (obj, 90, 15, 5);
+        WeaponProvider.CreateRandomWeapon (
+        obj, 90, 45, level,
+        bulletSpeedLowerBound: 10, bulletSpeedUpperBound: 20);
 
       return obj;
     }
@@ -67,7 +71,7 @@ namespace gameobject
           scale: 1.5f,
           rotation: 0f,
           radiusFactor: 0.4f,
-          health: level);
+          health: level * 2);
 
       PropertyManager.GetTagComponent (obj).easyTag = Tag.Enemy;
 
@@ -79,7 +83,9 @@ namespace gameobject
       WeaponAutoController controller = 
         obj.AddComponent<WeaponAutoController> ();
       controller.weapon = 
-        WeaponProvider.CreateRandomWeapon (obj, -90, 25, level);
+        WeaponProvider.CreateRandomWeapon (
+        obj, -90, 25, level, 
+        bulletSpeedLowerBound: 1, bulletSpeedUpperBound: 5);
 
       return obj;
     }
@@ -87,24 +93,38 @@ namespace gameobject
     public static GameObject CreateBullet (
       Vector2 location,
       // The tag of the bullet.
-      string tag,
+      string easyTag,
       // Which direction in degree (counter-clockwisely) is the bullet facing; 
       // 0 means right (x+ direction).
       float facing = 0.0f,
       float speed = 5.0f)
     {
-      GameObject obj =
-        ObjectProvider.CreateRigidObject (
+      GameObject obj;
+      if (easyTag == Tag.Player) {
+        obj = ObjectProvider.CreateRigidObject (
           "bullet", 
-          defenderSheet [21],
+          spritesSheet [61],
           rotation: 90 + facing,
           radiusFactor: 0.5f,
           location: location,
           velocity: new Vector2 (
             speed * Mathf.Cos (Mathf.Deg2Rad * facing),
-            speed * Mathf.Sin (Mathf.Deg2Rad * facing)));
+            speed * Mathf.Sin (Mathf.Deg2Rad * facing)),
+          health: 1);
+      } else {
+        obj = ObjectProvider.CreateRigidObject (
+          "bullet", 
+          spritesSheet [59],
+          rotation: 90 + facing,
+          radiusFactor: 0.5f,
+          location: location,
+          velocity: new Vector2 (
+            speed * Mathf.Cos (Mathf.Deg2Rad * facing),
+            speed * Mathf.Sin (Mathf.Deg2Rad * facing)),
+          health: 0);
+      }
 
-      PropertyManager.GetTagComponent (obj).easyTag = tag;
+      PropertyManager.GetTagComponent (obj).easyTag = easyTag;
 
       // Handle collision.
       obj.AddComponent<BulletOnCollision> ();

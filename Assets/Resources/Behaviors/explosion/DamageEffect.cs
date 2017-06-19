@@ -20,10 +20,7 @@ public class DamageEffect : MonoBehaviour
 
   private void ApplyDamage (Collider2D coll)
   {
-    GameObject victim = coll.gameObject;
-    Health health = PropertyManager.GetHealthComponent (coll.gameObject);
-    if (health != null) {
-      health.TakeDamage (damage);
-    }
+    return;
+    PropertyManager.ApplyDamage (coll.gameObject, damage);
   }
 }
