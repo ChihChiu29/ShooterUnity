@@ -7,8 +7,8 @@ public class BulletOnCollision : MonoBehaviour
 {
   void OnCollisionEnter2D (Collision2D coll)
   {
-    string myTag = PropertyManager.GetMetadata (gameObject).tag;
-    string collTag = PropertyManager.GetMetadata (coll.gameObject).tag;
+    string myTag = PropertyManager.GetTagComponent (gameObject).easyTag;
+    string collTag = PropertyManager.GetTagComponent (coll.gameObject).easyTag;
 
     if (collTag == myTag) {
       return;

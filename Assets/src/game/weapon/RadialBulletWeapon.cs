@@ -30,7 +30,7 @@ namespace weapon
         ObjectFactory.CreateBullet (
           new Vector2 (position.x + radius * Mathf.Cos (Mathf.Deg2Rad * angle), 
             position.y + radius * Mathf.Sin (Mathf.Deg2Rad * angle)),
-          PropertyManager.GetMetadata (host).tag,
+          PropertyManager.GetTagComponent (host).easyTag,
           facing: angle, 
           speed: speed);
       }

@@ -8,9 +8,14 @@ namespace gameobject
 {
   public class PropertyManager
   {
-    public static Metadata GetMetadata (GameObject obj)
+    public static Tag GetTagComponent (GameObject obj)
     {
-      return obj.GetComponent<Metadata> ();
+      return obj.GetComponent<Tag> ();
+    }
+
+    public static Health GetHealthComponent (GameObject obj)
+    {
+      return obj.GetComponent<Health> ();
     }
 
     public static Vector2 GetPosition (GameObject obj)

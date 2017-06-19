@@ -23,8 +23,9 @@ namespace gameobject
           defenderSheet [28],
           scale: 1.5f,
           radiusFactor: 0.3f);
-
-      PropertyManager.GetMetadata (obj).tag = Tag.Player;
+      Debug.Log (PropertyManager.GetTagComponent (obj));
+      Tag whatever = PropertyManager.GetTagComponent (obj);
+      PropertyManager.GetTagComponent (obj).easyTag = Tag.Player;
 
       // Fix rotation.
       Rigidbody2D rigidBody = obj.GetComponent<Rigidbody2D> ();
@@ -68,7 +69,7 @@ namespace gameobject
           rotation: 0f,
           radiusFactor: 0.4f);
 
-      PropertyManager.GetMetadata (obj).tag = Tag.Enemy;
+      PropertyManager.GetTagComponent (obj).easyTag = Tag.Enemy;
 
       // Fix rotation.
       Rigidbody2D rigidBody = obj.GetComponent<Rigidbody2D> ();
@@ -103,7 +104,7 @@ namespace gameobject
             speed * Mathf.Cos (Mathf.Deg2Rad * facing),
             speed * Mathf.Sin (Mathf.Deg2Rad * facing)));
 
-      PropertyManager.GetMetadata (obj).tag = tag;
+      PropertyManager.GetTagComponent (obj).easyTag = tag;
 
       // Handle collision.
       obj.AddComponent<BulletOnCollision> ();

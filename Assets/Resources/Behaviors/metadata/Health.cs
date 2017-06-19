@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Metadata : MonoBehaviour
+public class Health : MonoBehaviour
 {
-  public string tag;
+  public int health = 0;
 }
