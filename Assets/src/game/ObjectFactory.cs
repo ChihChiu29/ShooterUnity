@@ -22,9 +22,8 @@ namespace gameobject
           "player",
           defenderSheet [28],
           scale: 1.5f,
-          radiusFactor: 0.3f);
-      Debug.Log (PropertyManager.GetTagComponent (obj));
-      Tag whatever = PropertyManager.GetTagComponent (obj);
+          radiusFactor: 0.3f,
+          health: 10);
       PropertyManager.GetTagComponent (obj).easyTag = Tag.Player;
 
       // Fix rotation.
@@ -40,7 +39,7 @@ namespace gameobject
       WeaponKeyboardController weaponController = 
         obj.AddComponent<WeaponKeyboardController> ();
       weaponController.weapon = 
-        WeaponProvider.CreateRandomWeapon (obj, 90, 45, 5);
+        WeaponProvider.CreateRandomWeapon (obj, 90, 15, 5);
 
       return obj;
     }
@@ -49,7 +48,7 @@ namespace gameobject
       // Starts from 1, type of enemy.
       int type,
       // Starts from 1, the higher level the more powerful the weapon.
-      int weaponLevel)
+      int level)
     {
       Sprite enemySprite;
       if (type == 1) {
@@ -67,7 +66,8 @@ namespace gameobject
           enemySprite,
           scale: 1.5f,
           rotation: 0f,
-          radiusFactor: 0.4f);
+          radiusFactor: 0.4f,
+          health: level);
 
       PropertyManager.GetTagComponent (obj).easyTag = Tag.Enemy;
 
@@ -79,7 +79,7 @@ namespace gameobject
       WeaponAutoController controller = 
         obj.AddComponent<WeaponAutoController> ();
       controller.weapon = 
-        WeaponProvider.CreateRandomWeapon (obj, -90, 25, weaponLevel);
+        WeaponProvider.CreateRandomWeapon (obj, -90, 25, level);
 
       return obj;
     }
@@ -98,7 +98,7 @@ namespace gameobject
           "bullet", 
           defenderSheet [21],
           rotation: 90 + facing,
-          radiusFactor: 0.05f,
+          radiusFactor: 0.5f,
           location: location,
           velocity: new Vector2 (
             speed * Mathf.Cos (Mathf.Deg2Rad * facing),
@@ -129,6 +129,9 @@ namespace gameobject
           rotation: Random.Range (0, 360),
           radiusFactor: 0.5f,
           location: location);
+
+      PropertyManager.GetTagComponent (explosion).easyTag = Tag.Explosion;
+
       return explosion;
     }
   }

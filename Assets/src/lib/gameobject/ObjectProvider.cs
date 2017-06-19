@@ -26,7 +26,9 @@ namespace gameobject
       // The location of the object.
       Vector2 location = default(Vector2),
       // The initial velocity of the object.
-      Vector2 velocity = default(Vector2))
+      Vector2 velocity = default(Vector2),
+      // Health.
+      int health = 0)
     {
       GameObject obj = 
         MonoBehaviour.Instantiate (
@@ -47,7 +49,9 @@ namespace gameobject
 
       float radius = PropertyManager.GetSpriteScale (obj) * radiusFactor;
       CircleCollider2D collider = obj.GetComponent<CircleCollider2D> ();
-      collider.radius = radius;  
+      collider.radius = radius;
+
+      PropertyManager.GetHealthComponent (obj).health = health;
 
       return obj;
     }
@@ -89,7 +93,6 @@ namespace gameobject
       CircleCollider2D collider = obj.GetComponent<CircleCollider2D> ();
       collider.radius = radius;
       collider.isTrigger = true;
-
 
       // Set parameters on expansion.
       ExpansionEffect expansionEffect = obj.GetComponent<ExpansionEffect> ();

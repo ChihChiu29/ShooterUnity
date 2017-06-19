@@ -14,7 +14,7 @@ public class Playground : MonoBehaviour
 
     for (int x = -7; x <= 7; x += 2) {
       GameObject enemy = 
-        ObjectFactory.CreateEnemy (Random.Range (1, 4), Random.Range (1, 5));
+        ObjectFactory.CreateEnemy (Random.Range (1, 4), Random.Range (5, 10));
       enemy.transform.position = new Vector2 (x, 4);
     }
   }

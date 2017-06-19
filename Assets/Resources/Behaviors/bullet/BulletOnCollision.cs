@@ -10,15 +10,21 @@ public class BulletOnCollision : MonoBehaviour
     string myTag = PropertyManager.GetTagComponent (gameObject).easyTag;
     string collTag = PropertyManager.GetTagComponent (coll.gameObject).easyTag;
 
-    if (collTag == myTag) {
-      return;
-    }
+//    if (collTag == myTag) {
+//      return;
+//    }
 
-    if (collTag == Tag.Boundary) {
-      Object.Destroy (gameObject);
-    } else if (collTag != myTag) {
+//    if (collTag == Tag.Boundary) {
+//      Object.Destroy (gameObject);
+//    } else
+    if (ShouldExplode (myTag, collTag)) {
       PropertyManager.GetHealthComponent (gameObject).TakeDamage (1);
-      PropertyManager.GetHealthComponent (coll.gameObject).TakeDamage (1);
     }
+  }
+
+  private static bool ShouldExplode (string myTag, string collTag)
+  {
+    return (myTag == Tag.Player && collTag == Tag.Enemy) ||
+    (myTag == Tag.Enemy && collTag == Tag.Player);
   }
 }
