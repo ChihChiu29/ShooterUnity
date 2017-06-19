@@ -107,5 +107,22 @@ namespace gameobject
     {
       return Path.Combine (PREFAB_FOLDER, name);
     }
+
+    public static GameObject CreateStaticRectangularObject (
+      string name,
+      Rect area)
+    {
+      GameObject obj = 
+        MonoBehaviour.Instantiate (
+          Resources.Load<GameObject> (GetFullPath ("StaticBody")),
+          area.center,
+          Quaternion.identity);
+      obj.name = name;
+      PropertyManager.SetTag (obj, Tag.Static);
+
+      obj.transform.localScale = new Vector3 (area.width, area.height, 1);
+
+      return obj;
+    }
   }
 }

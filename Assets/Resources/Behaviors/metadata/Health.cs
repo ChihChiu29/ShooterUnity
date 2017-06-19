@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using gameobject;
+using game;
 
 public class Health : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class Health : MonoBehaviour
     if (health < 0) {
       float radius = PropertyManager.GetRadius (gameObject);
 
+      // Explosion based on the side of the object.
 //      ObjectFactory.CreateExplosion (
 //        new Vector2 (transform.position.x, transform.position.y),
 //        initialScale: 0.1f * radius,

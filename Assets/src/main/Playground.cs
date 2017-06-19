@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using gameobject;
+using game;
 using sprite;
 
 public class Playground : MonoBehaviour
@@ -9,7 +9,7 @@ public class Playground : MonoBehaviour
   // Use this for initialization
   void Start ()
   {
-    GameObject player = ObjectFactory.CreatePlayer (5);
+    GameObject player = ObjectFactory.CreatePlayer (2);
     player.transform.position = new Vector2 (0, -4);
 
     for (int x = -7; x <= 7; x += 2) {

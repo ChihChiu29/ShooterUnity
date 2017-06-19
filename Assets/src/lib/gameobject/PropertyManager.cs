@@ -13,19 +13,26 @@ namespace gameobject
       return obj.GetComponent<Tag> ();
     }
 
+    public static void SetTag (GameObject obj, string easyTag)
+    {
+      Tag tagComponent = GetTagComponent (obj);
+      if (tagComponent != null) {
+        tagComponent.easyTag = easyTag;
+      }
+    }
+
     public static Health GetHealthComponent (GameObject obj)
     {
       return obj.GetComponent<Health> ();
     }
 
     // Returning -1 if the object does not have health component.
-    public static int ApplyDamage (GameObject obj, int damage)
+    public static void ApplyDamage (GameObject obj, int damage)
     {
       Health healthComponent = GetHealthComponent (obj);
       if (healthComponent != null) {
-        return healthComponent.ApplyDamage (damage);
+        healthComponent.ApplyDamage (damage);
       }
-      return -1;
     }
 
     public static Vector2 GetPosition (GameObject obj)

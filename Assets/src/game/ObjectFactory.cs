@@ -6,7 +6,7 @@ using sprite;
 using gameobject;
 using weapon;
 
-namespace gameobject
+namespace game
 {
   public class ObjectFactory
   {
@@ -37,11 +37,13 @@ namespace gameobject
         obj.AddComponent<RigidbodyKeyboardController> ();
       controller.speed = 7f;
 
-      // Attach a weapon and a controller.
-      WeaponKeyboardController weaponController = 
-        obj.AddComponent<WeaponKeyboardController> ();
-      weaponController.weapon = WeaponProvider.CreateRandomWeapon (
-        obj, 90, level);
+      // Attach weapon and a controllers.
+      for (var i = 0; i < level; i++) {
+        WeaponKeyboardController weaponController = 
+          obj.AddComponent<WeaponKeyboardController> ();
+        weaponController.weapon = WeaponProvider.CreateRandomWeapon (
+          obj, 90, level);
+      }
 
       return obj;
     }
@@ -84,6 +86,11 @@ namespace gameobject
       controller.timeIntervalBetweenFires = 0.5f / (level + 1);
 
       return obj;
+    }
+
+    public static int GetRandomEnemyType ()
+    {
+      return Random.Range (1, 4);
     }
 
     public static GameObject CreateBullet (
@@ -149,6 +156,50 @@ namespace gameobject
       PropertyManager.GetTagComponent (explosion).easyTag = Tag.Explosion;
 
       return explosion;
+    }
+
+    // Creates a rectangular boundary for the game.
+    public static GameObject[] CreateBoundary (
+      Rect area,
+      float boundaryThickness = 1)
+    {
+      float xMin = area.xMin;
+      float xMax = area.xMax;
+      float yMin = area.yMin;
+      float yMax = area.yMax;
+      float width = area.width;
+      float height = area.height;
+      GameObject[] boundary = new GameObject[4];
+      boundary [0] = ObjectProvider.CreateStaticRectangularObject (
+        "right boundary",
+        new Rect (
+          xMax, 
+          yMin - boundaryThickness, 
+          boundaryThickness, 
+          height + 2 * boundaryThickness));
+      boundary [1] = ObjectProvider.CreateStaticRectangularObject (
+        "left boundary",
+        new Rect (
+          xMin - boundaryThickness, 
+          yMin - boundaryThickness, 
+          boundaryThickness, 
+          height + 2 * boundaryThickness));
+      boundary [2] = ObjectProvider.CreateStaticRectangularObject (
+        "top boundary",
+        new Rect (
+          xMin - boundaryThickness, 
+          yMax, 
+          width + 2 * boundaryThickness,
+          boundaryThickness));
+      boundary [3] = ObjectProvider.CreateStaticRectangularObject (
+        "bottom boundary",
+        new Rect (
+          xMin - boundaryThickness, 
+          yMin - boundaryThickness, 
+          width + 2 * boundaryThickness, 
+          boundaryThickness));
+
+      return boundary;
     }
   }
 }

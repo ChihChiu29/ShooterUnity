@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using gameobject;
+using game;
 
 namespace weapon
 {
