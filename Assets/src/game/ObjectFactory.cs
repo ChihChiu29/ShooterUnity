@@ -40,10 +40,8 @@ namespace gameobject
       // Attach a weapon and a controller.
       WeaponKeyboardController weaponController = 
         obj.AddComponent<WeaponKeyboardController> ();
-      weaponController.weapon = 
-        WeaponProvider.CreateRandomWeapon (
-        obj, 90, 45, level,
-        bulletSpeedLowerBound: 10, bulletSpeedUpperBound: 20);
+      weaponController.weapon = WeaponProvider.CreateRandomWeapon (
+        obj, 90, level);
 
       return obj;
     }
@@ -82,10 +80,8 @@ namespace gameobject
       // Attach a weapon.
       WeaponAutoController controller = 
         obj.AddComponent<WeaponAutoController> ();
-      controller.weapon = 
-        WeaponProvider.CreateRandomWeapon (
-        obj, -90, 25, level, 
-        bulletSpeedLowerBound: 1, bulletSpeedUpperBound: 5);
+      controller.weapon = WeaponProvider.CreateRandomWeapon (obj, 270, level);
+      controller.timeIntervalBetweenFires = 0.5f / (level + 1);
 
       return obj;
     }
