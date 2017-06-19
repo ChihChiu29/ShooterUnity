@@ -14,14 +14,11 @@ public class BulletOnCollision : MonoBehaviour
       return;
     }
 
-    if (collTag != myTag && collTag != Tag.Boundary) {
-      ObjectFactory.CreateExplosion (
-        new Vector2 (transform.position.x, transform.position.y),
-        initialScale: 0.1f,
-        finalScale: 0.6f,
-        expansionSpeed: 1.5f);
+    if (collTag == Tag.Boundary) {
+      Object.Destroy (gameObject);
+    } else if (collTag != myTag) {
+      PropertyManager.GetHealthComponent (gameObject).TakeDamage (1);
+      PropertyManager.GetHealthComponent (coll.gameObject).TakeDamage (1);
     }
-
-    Object.Destroy (gameObject);
   }
 }
