@@ -4,6 +4,7 @@ using UnityEngine;
 using System.IO;
 
 // Remember to keep prefabs under Assets/Resources/Prefabs/ folder.
+using game;
 
 namespace gameobject
 {
@@ -122,6 +123,20 @@ namespace gameobject
 
       obj.transform.localScale = new Vector3 (area.width, area.height, 1);
 
+      return obj;
+    }
+
+    public static GameObject CreateAnimationManager ()
+    {
+      GameObject obj = 
+        MonoBehaviour.Instantiate (
+          Resources.Load<GameObject> (GetFullPath ("AnimationManager")),
+          Vector2.zero,
+          Quaternion.identity);
+      obj.name = "animation manager";
+      PropertyManager.SetTag (obj, Tag.ManagerObject);
+
+      Global.animationManager = obj;
       return obj;
     }
   }

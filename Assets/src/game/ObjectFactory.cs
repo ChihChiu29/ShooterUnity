@@ -203,5 +203,10 @@ namespace game
 
       return boundary;
     }
+
+    public static GameObject CreateAnimationManager ()
+    {
+      return ObjectProvider.CreateAnimationManager ();
+    }
   }
 }
