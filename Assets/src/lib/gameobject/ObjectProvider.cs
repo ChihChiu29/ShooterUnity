@@ -4,8 +4,6 @@ using UnityEngine;
 using System.IO;
 
 // Remember to keep prefabs under Assets/Resources/Prefabs/ folder.
-using game;
-
 namespace gameobject
 {
   public class ObjectProvider

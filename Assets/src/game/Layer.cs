@@ -7,12 +7,8 @@ using UnityEngine;
 
 public class Layer
 {
-  public static string Animation = "animation";
-
-  public static void SetGameObjectToLayer (GameObject target, string layerName)
-  {
-    target.layer = LayerMask.NameToLayer (layerName);
-  }
+  public static int DefaultLayer = LayerMask.NameToLayer ("Default");
+  public static int AnimationLayer = LayerMask.NameToLayer ("Animation");
 
   public static void SetGameObjectToLayer (GameObject target, int layer)
   {

@@ -20,7 +20,7 @@ public class WeaponAutoController : MonoBehaviour
   // Update is called once per frame
   void Update ()
   {
-    if (weapon == null) {
+    if (weapon == null || gameObject.layer != Layer.DefaultLayer) {
       return;
     }
 

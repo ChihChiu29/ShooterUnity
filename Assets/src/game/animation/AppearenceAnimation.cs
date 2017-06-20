@@ -31,7 +31,7 @@ namespace animation
 
       targetOriginalScale = target.transform.localScale;
       targetOriginalLayer = target.layer;
-      Layer.SetGameObjectToLayer (target, Layer.Animation);
+      Layer.SetGameObjectToLayer (target, Layer.AnimationLayer);
     }
 
     public bool NextFrame (
