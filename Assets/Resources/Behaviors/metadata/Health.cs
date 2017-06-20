@@ -13,9 +13,8 @@ public class Health : MonoBehaviour
   void Update ()
   {
     if (health < 0) {
-      float radius = PropertyManager.GetRadius (gameObject);
-
       // Explosion based on the side of the object.
+//      float radius = PropertyManager.GetRadius (gameObject);
 //      ObjectFactory.CreateExplosion (
 //        new Vector2 (transform.position.x, transform.position.y),
 //        initialScale: 0.1f * radius,

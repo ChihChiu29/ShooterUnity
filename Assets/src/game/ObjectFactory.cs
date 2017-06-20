@@ -17,6 +17,7 @@ namespace game
     public static Sprite airshipSprite = 
       SpriteProvider.GetSpriteByRelativePath ("airship");
 
+    // Creates a Player object. To access it, use Global.player;
     public static GameObject CreatePlayer (int level)
     {
       GameObject obj = 
@@ -45,6 +46,7 @@ namespace game
           obj, 90, level);
       }
 
+      Global.player = obj;
       return obj;
     }
 

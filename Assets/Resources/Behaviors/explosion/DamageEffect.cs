@@ -20,7 +20,6 @@ public class DamageEffect : MonoBehaviour
 
   private void ApplyDamage (Collider2D coll)
   {
-    return;
     PropertyManager.ApplyDamage (coll.gameObject, damage);
   }
 }
