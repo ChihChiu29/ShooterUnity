@@ -6,8 +6,8 @@ using animation;
 public class GameMaster : MonoBehaviour
 {
 
-  public int playerLevel = 4;
-  public int difficulty = 2;
+  public int playerLevel = 1;
+  public int difficulty = 10;
   public Rect gameArea = new Rect (-8, -6, 16, 12);
   public int maxNumberOfEnemyOnScreen = 5;
 

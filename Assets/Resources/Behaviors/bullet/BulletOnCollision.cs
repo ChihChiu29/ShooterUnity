@@ -10,9 +10,9 @@ public class BulletOnCollision : MonoBehaviour
     string myTag = PropertyManager.GetTagComponent (gameObject).easyTag;
     string collTag = PropertyManager.GetTagComponent (coll.gameObject).easyTag;
 
-    if (collTag == Tag.Boundary || collTag == Tag.Static) {
-      Object.Destroy (gameObject);
-    }
+//    if (collTag == Tag.Boundary || collTag == Tag.Static) {
+//      Object.Destroy (gameObject);
+//    }
 
     if (ShouldExplode (myTag, collTag)) {
       PropertyManager.ApplyDamage (gameObject, 1);
