@@ -6,6 +6,8 @@ namespace weapon
 {
   public interface Weapon
   {
-    void Fire ();
+    void Fire (
+      // The default direction of a weapon.
+      int direction = 0);
   }
 }

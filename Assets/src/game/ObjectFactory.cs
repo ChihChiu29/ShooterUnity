@@ -129,8 +129,13 @@ public class ObjectFactory
 
     PropertyManager.GetTagComponent (obj).easyTag = easyTag;
 
+//    obj.GetComponent<Rigidbody2D> ().bodyType = RigidbodyType2D.Kinematic;
+
     // Handle collision.
     obj.AddComponent<BulletOnCollision> ();
+
+    // Add Life cycle.
+    obj.AddComponent<LifeCycle> ();
 
     return obj;
   }

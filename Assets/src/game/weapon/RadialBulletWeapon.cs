@@ -21,17 +21,19 @@ namespace weapon
       this.pattern = pattern;
     }
 
-    public void Fire ()
+    public void Fire (int direction = 0)
     {
       Vector2 position = PropertyManager.GetPosition (host);
       float radius = PropertyManager.GetRadius (host);
       foreach (int angle in pattern.Keys) {
         float speed = pattern [angle];
+        int angleInDirection = angle + direction;
         ObjectFactory.CreateBullet (
-          new Vector2 (position.x + radius * Mathf.Cos (Mathf.Deg2Rad * angle), 
-            position.y + radius * Mathf.Sin (Mathf.Deg2Rad * angle)),
+          new Vector2 (position.x + radius * Mathf.Cos (
+            Mathf.Deg2Rad * angleInDirection), 
+            position.y + radius * Mathf.Sin (Mathf.Deg2Rad * angleInDirection)),
           PropertyManager.GetTagComponent (host).easyTag,
-          facing: angle, 
+          facing: angleInDirection, 
           speed: speed);
       }
     }

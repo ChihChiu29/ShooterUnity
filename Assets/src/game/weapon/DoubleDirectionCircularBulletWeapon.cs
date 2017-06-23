@@ -37,17 +37,20 @@ namespace weapon
       this.currentAngle = angleLowerBound;
     }
 
-    public void Fire ()
+    public void Fire (int direction = 0)
     {
+      int currentAngleInDirection = currentAngle + direction;
       Vector2 position = PropertyManager.GetPosition (host);
       float radius = PropertyManager.GetRadius (host);
 
       ObjectFactory.CreateBullet (
         new Vector2 (
-          position.x + radius * Mathf.Cos (Mathf.Deg2Rad * currentAngle), 
-          position.y + radius * Mathf.Sin (Mathf.Deg2Rad * currentAngle)),
+          position.x + radius * Mathf.Cos (
+            Mathf.Deg2Rad * currentAngleInDirection), 
+          position.y + radius * Mathf.Sin (
+            Mathf.Deg2Rad * currentAngleInDirection)),
         PropertyManager.GetTagComponent (host).easyTag,
-        facing: currentAngle, 
+        facing: currentAngleInDirection,
         speed: bulletSpeed);
 
       currentAngle += angleIncrement * currentAngleIncrementDirection;
