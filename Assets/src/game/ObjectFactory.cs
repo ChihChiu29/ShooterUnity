@@ -5,6 +5,7 @@ using System.Net.NetworkInformation;
 using sprite;
 using gameobject;
 using weapon;
+using audio;
 
 public class ObjectFactory
 {
@@ -114,6 +115,7 @@ public class ObjectFactory
           speed * Mathf.Cos (Mathf.Deg2Rad * facing),
           speed * Mathf.Sin (Mathf.Deg2Rad * facing)),
         health: 1);
+      AudioPlayer.PlayLaserSound ();
     } else {
       obj = ObjectProvider.CreateRigidObject (
         "bullet", 
@@ -125,6 +127,7 @@ public class ObjectFactory
           speed * Mathf.Cos (Mathf.Deg2Rad * facing),
           speed * Mathf.Sin (Mathf.Deg2Rad * facing)),
         health: 0);
+      AudioPlayer.PlayBulletSound ();
     }
 
     PropertyManager.GetTagComponent (obj).easyTag = easyTag;
@@ -210,5 +213,10 @@ public class ObjectFactory
   public static GameObject CreateAnimationManager ()
   {
     return ObjectProvider.CreateAnimationManager ();
+  }
+
+  public static GameObject CreateAudioManager ()
+  {
+    return ObjectProvider.CreateAudioManager ();
   }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using weapon;
+using audio;
 
 public class WeaponKeyboardController : MonoBehaviour
 {

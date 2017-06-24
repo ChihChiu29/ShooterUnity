@@ -137,5 +137,19 @@ namespace gameobject
       Global.animationManager = obj;
       return obj;
     }
+
+    public static GameObject CreateAudioManager ()
+    {
+      GameObject obj = 
+        MonoBehaviour.Instantiate (
+          Resources.Load<GameObject> (GetFullPath ("AudioManager")),
+          Vector2.zero,
+          Quaternion.identity);
+      obj.name = "audio manager";
+      PropertyManager.SetTag (obj, Tag.ManagerObject);
+
+      Global.audioManager = obj;
+      return obj;
+    }
   }
 }

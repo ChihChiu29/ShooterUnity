@@ -6,4 +6,5 @@ public class Global
 {
   public static GameObject player;
   public static GameObject animationManager;
+  public static GameObject audioManager;
 }

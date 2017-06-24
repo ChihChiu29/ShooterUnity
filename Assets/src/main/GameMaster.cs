@@ -20,13 +20,16 @@ public class GameMaster : MonoBehaviour
     Camera.main.orthographicSize = 
       Mathf.Max (gameArea.width, gameArea.height) / 2;
 
+    // Create and register global objects.
+    ObjectFactory.CreateAnimationManager ();
+    ObjectFactory.CreateAudioManager ();
+
+    // Create initial set of level objects.
     ObjectFactory.CreateBoundary (gameArea);
 
     GameObject player = ObjectFactory.CreatePlayer (playerLevel);
     player.transform.position = 
       new Vector2 (gameArea.center.x, gameArea.yMin + 2);
-
-    ObjectFactory.CreateAnimationManager ();
 
     totalNumberOfEnemies = difficulty * 10;
 
