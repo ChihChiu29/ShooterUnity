@@ -10,6 +10,7 @@ namespace weapon
   public class DoubleDirectionCircularBulletWeapon : Weapon
   {
     private GameObject host;
+    private GameObject target;
     private float bulletSpeed;
     private int angleLowerBound;
     private int angleUpperBound;
@@ -24,12 +25,14 @@ namespace weapon
     public DoubleDirectionCircularBulletWeapon (
       // Host of the weapon.
       GameObject host,
+      GameObject target,
       int bulletSpeed,
       int angleLowerBound,
       int angleUpperBound,
       int angleIncrement)
     {
       this.host = host;
+      this.target = target;
       this.bulletSpeed = bulletSpeed;
       this.angleLowerBound = angleLowerBound;
       this.angleUpperBound = angleUpperBound;
@@ -37,9 +40,13 @@ namespace weapon
       this.currentAngle = angleLowerBound;
     }
 
-    public void Fire (int direction = 0)
+    public void Fire (float direction = 0)
     {
-      int currentAngleInDirection = currentAngle + direction;
+      if (target != null) {
+        direction = math.Angle.GetAngleTowards (host.transform.position, target.transform.position);
+      }
+      float currentAngleInDirection = currentAngle + direction;
+
       Vector2 position = PropertyManager.GetPosition (host);
       float radius = PropertyManager.GetRadius (host);
 

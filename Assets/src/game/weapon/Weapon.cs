@@ -8,6 +8,6 @@ namespace weapon
   {
     void Fire (
       // The default direction of a weapon.
-      int direction = 0);
+      float direction = 0);
   }
 }

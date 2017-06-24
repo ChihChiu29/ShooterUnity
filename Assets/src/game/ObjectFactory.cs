@@ -42,7 +42,7 @@ public class ObjectFactory
       WeaponKeyboardController weaponController = 
         obj.AddComponent<WeaponKeyboardController> ();
       weaponController.weapon = WeaponProvider.CreateRandomWeapon (
-        obj, 90, level);
+        obj, null, 90, level);
     }
 
     Global.player = obj;
@@ -83,7 +83,8 @@ public class ObjectFactory
     // Attach a weapon.
     WeaponAutoController controller = 
       obj.AddComponent<WeaponAutoController> ();
-    controller.weapon = WeaponProvider.CreateRandomWeapon (obj, 270, level);
+    controller.weapon = WeaponProvider.CreateRandomWeapon (
+      obj, Global.player, 0, level);
     controller.timeIntervalBetweenFires = 0.5f / (level + 1);
 
     return obj;
@@ -115,6 +116,11 @@ public class ObjectFactory
           speed * Mathf.Cos (Mathf.Deg2Rad * facing),
           speed * Mathf.Sin (Mathf.Deg2Rad * facing)),
         health: 1);
+
+      // Add Life cycle.
+      LifeCycle lifeCycle = obj.AddComponent<LifeCycle> ();
+      lifeCycle.lifetime = 3;
+
       AudioPlayer.PlayLaserSound ();
     } else {
       obj = ObjectProvider.CreateRigidObject (
@@ -127,6 +133,11 @@ public class ObjectFactory
           speed * Mathf.Cos (Mathf.Deg2Rad * facing),
           speed * Mathf.Sin (Mathf.Deg2Rad * facing)),
         health: 0);
+
+      // Add Life cycle.
+      LifeCycle lifeCycle = obj.AddComponent<LifeCycle> ();
+      lifeCycle.lifetime = 2;
+
       AudioPlayer.PlayBulletSound ();
     }
 
@@ -136,9 +147,6 @@ public class ObjectFactory
 
     // Handle collision.
     obj.AddComponent<BulletOnCollision> ();
-
-    // Add Life cycle.
-    obj.AddComponent<LifeCycle> ();
 
     return obj;
   }

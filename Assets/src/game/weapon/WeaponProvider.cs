@@ -7,7 +7,8 @@ namespace weapon
   public class WeaponProvider
   {
     public static Weapon CreateRandomWeapon (
-      GameObject host, 
+      GameObject host,
+      GameObject target,
       // Fire direction.
       int fireDirectionAngle,
       // Level of the weapon.
@@ -17,7 +18,8 @@ namespace weapon
 
       if (weaponType == 1) {
         return CreateRandomRadialBulletWeapon (
-          host, 
+          host,
+          target,
           Random.Range (25, 45),
           fireDirectionAngle,
           power: level, 
@@ -26,6 +28,7 @@ namespace weapon
       } else if (weaponType == 2) {
         return CreateRandomDoubleDirectionCircularBulletWeapon (
           host,
+          target,
           fireDirectionAngle);
       }
 
@@ -35,6 +38,7 @@ namespace weapon
     public static RadialBulletWeapon CreateRandomRadialBulletWeapon (
       // The host.
       GameObject host,
+      GameObject target,
       // Half of the spread of the overall fire direction.
       int halfSpread,
       int fireDirection,
@@ -51,17 +55,19 @@ namespace weapon
         pattern [direction] = 
           Random.Range (bulletSpeedLowerBound, bulletSpeedUpperBound + 1);
       }
-      return new RadialBulletWeapon (host, pattern);
+      return new RadialBulletWeapon (host, target, pattern);
     }
 
     public static DoubleDirectionCircularBulletWeapon 
     CreateRandomDoubleDirectionCircularBulletWeapon (
       // The host.
       GameObject host,
+      GameObject target,
       int fireDirection)
     {
       return new DoubleDirectionCircularBulletWeapon (
-        host, 
+        host,
+        target,
         bulletSpeed: Random.Range (2, 10),
         angleLowerBound: Random.Range (fireDirection - 45, fireDirection),
         angleUpperBound: Random.Range (fireDirection, fireDirection + 45),
