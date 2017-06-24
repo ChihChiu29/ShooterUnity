@@ -6,6 +6,7 @@ using sprite;
 using gameobject;
 using weapon;
 using audio;
+using script;
 
 public class ObjectFactory
 {
@@ -44,6 +45,8 @@ public class ObjectFactory
       weaponController.weapon = WeaponProvider.CreateRandomWeapon (
         obj, null, 90, level);
     }
+
+//    ScriptProvider.AddScript<PlaySoundOnHit> (obj);
 
     Global.player = obj;
     return obj;
@@ -86,6 +89,8 @@ public class ObjectFactory
     controller.weapon = WeaponProvider.CreateRandomWeapon (
       obj, Global.player, 0, level);
     controller.timeIntervalBetweenFires = 0.5f / (level + 1);
+
+//    ScriptProvider.AddScript<PlaySoundOnHit> (obj);
 
     return obj;
   }
@@ -170,6 +175,8 @@ public class ObjectFactory
         location: location);
 
     PropertyManager.GetTagComponent (explosion).easyTag = Tag.Explosion;
+
+    AudioPlayer.PlayExplosionSound ();
 
     return explosion;
   }

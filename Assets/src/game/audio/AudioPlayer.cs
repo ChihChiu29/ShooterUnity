@@ -23,6 +23,17 @@ namespace audio
       PlayOneShotThrottled ("bullet");
     }
 
+    public static void PlayHitSound01 ()
+    {
+      PlayOneShotThrottled ("hit01");
+    }
+
+    public static void PlayExplosionSound ()
+    {
+      PlayOneShotThrottled ("explosionPlayS");
+    }
+
+
     private static void PlayOneShotThrottled (
       // The relative path to the clip file under the audio clip folder.
       string clipRelativePath)
