@@ -27,13 +27,13 @@ public class WeaponKeyboardController : MonoBehaviour
     float currentTime = Time.time;
     if (currentTime > lastFireTime + timeIntervalBetweenFires) {
       if (Input.GetKey ("j")) {
-        weapon.Fire (90);
-      } else if (Input.GetKey ("k")) {
         weapon.Fire (180);
+      } else if (Input.GetKey ("k")) {
+        weapon.Fire (-90);
       } else if (Input.GetKey ("l")) {
-        weapon.Fire (270);
-      } else if (Input.GetKey ("i")) {
         weapon.Fire (0);
+      } else if (Input.GetKey ("i")) {
+        weapon.Fire (90);
       }
       lastFireTime = currentTime;
     }

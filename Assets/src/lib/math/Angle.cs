@@ -18,5 +18,15 @@ namespace math
         return -Vector2.Angle (xAxis, baseToTarget);
       }
     }
+
+    // Same as Vector2.Angle, but with sign (counter-clockwisely).
+    public static float GetAngleBetween (Vector2 start, Vector2 end)
+    {
+      if (end.y * start.x - end.x * start.y > 0) {
+        return Vector2.Angle (start, end);
+      } else {
+        return -Vector2.Angle (start, end);
+      }
+    }
   }
 }

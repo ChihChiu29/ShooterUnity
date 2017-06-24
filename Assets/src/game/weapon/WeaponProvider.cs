@@ -8,9 +8,6 @@ namespace weapon
   {
     public static Weapon CreateRandomWeapon (
       GameObject host,
-      GameObject target,
-      // Fire direction.
-      int fireDirectionAngle,
       // Level of the weapon.
       int level)
     {
@@ -19,17 +16,12 @@ namespace weapon
       if (weaponType == 1) {
         return CreateRandomRadialBulletWeapon (
           host,
-          target,
           Random.Range (25, 45),
-          fireDirectionAngle,
           power: level, 
           bulletSpeedLowerBound: 1 + level, 
           bulletSpeedUpperBound: 5 + level);
       } else if (weaponType == 2) {
-        return CreateRandomDoubleDirectionCircularBulletWeapon (
-          host,
-          target,
-          fireDirectionAngle);
+        return CreateRandomDoubleDirectionCircularBulletWeapon (host);
       }
 
       return null;
@@ -38,10 +30,8 @@ namespace weapon
     public static RadialBulletWeapon CreateRandomRadialBulletWeapon (
       // The host.
       GameObject host,
-      GameObject target,
       // Half of the spread of the overall fire direction.
       int halfSpread,
-      int fireDirection,
       // The higher the power, the more powerful the weapon.
       int power,
       // Speed of the bullets.
@@ -51,26 +41,23 @@ namespace weapon
       Dictionary<int, float> pattern = new Dictionary<int, float> ();
       for (int i = 0; i < power; i++) {
         int direction = 
-          Random.Range (fireDirection - halfSpread, fireDirection + halfSpread);
+          Random.Range (-halfSpread, halfSpread);
         pattern [direction] = 
           Random.Range (bulletSpeedLowerBound, bulletSpeedUpperBound + 1);
       }
-      return new RadialBulletWeapon (host, target, pattern);
+      return new RadialBulletWeapon (host, pattern);
     }
 
     public static DoubleDirectionCircularBulletWeapon 
     CreateRandomDoubleDirectionCircularBulletWeapon (
       // The host.
-      GameObject host,
-      GameObject target,
-      int fireDirection)
+      GameObject host)
     {
       return new DoubleDirectionCircularBulletWeapon (
         host,
-        target,
         bulletSpeed: Random.Range (2, 10),
-        angleLowerBound: Random.Range (fireDirection - 45, fireDirection),
-        angleUpperBound: Random.Range (fireDirection, fireDirection + 45),
+        angleLowerBound: Random.Range (-45, 0),
+        angleUpperBound: Random.Range (0, 45),
         angleIncrement: Random.Range (1, 20));
     }
   }

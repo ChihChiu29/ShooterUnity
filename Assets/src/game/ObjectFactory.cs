@@ -42,8 +42,8 @@ public class ObjectFactory
     for (var i = 0; i < level; i++) {
       WeaponKeyboardController weaponController = 
         obj.AddComponent<WeaponKeyboardController> ();
-      weaponController.weapon = WeaponProvider.CreateRandomWeapon (
-        obj, null, 90, level);
+      weaponController.weapon = 
+        WeaponProvider.CreateRandomWeapon (obj, level);
     }
 
 //    ScriptProvider.AddScript<PlaySoundOnHit> (obj);
@@ -86,8 +86,9 @@ public class ObjectFactory
     // Attach a weapon.
     WeaponAutoController controller = 
       obj.AddComponent<WeaponAutoController> ();
-    controller.weapon = WeaponProvider.CreateRandomWeapon (
-      obj, Global.player, 0, level);
+    controller.weapon = WeaponProvider.CreateRandomWeapon (obj, level);
+    controller.target = Global.player;
+    controller.fireDirectionDegree = -90;
     controller.timeIntervalBetweenFires = 0.5f / (level + 1);
 
 //    ScriptProvider.AddScript<PlaySoundOnHit> (obj);

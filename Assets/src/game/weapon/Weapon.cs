@@ -7,7 +7,7 @@ namespace weapon
   public interface Weapon
   {
     void Fire (
-      // The default direction of a weapon.
+      // 0 being to the right, counter-clockwisely.
       float direction = 0);
   }
 }
